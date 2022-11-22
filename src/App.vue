@@ -1,15 +1,15 @@
 <script lang="tsx">
-import { defineComponent, ref, watch } from "vue";
-import { RouterView } from "vue-router";
-import Layout from "./layout/layout.vue"
-import router from "./router"
-import Admin from "./layout/admin.vue"
-import None from "./layout/none.vue"
-import store from "./store"
+import { defineComponent } from 'vue'
+import { RouterView } from 'vue-router'
+import Layout from './layout/layout.vue'
+import router from './router'
+import Admin from './layout/admin.vue'
+import None from './layout/none.vue'
+import store from './store'
 
 export default defineComponent({
   setup(props) {
-    store.dispatch("getTags")
+    store.dispatch('getTags')
 
     return () => (
       <>
@@ -21,9 +21,9 @@ export default defineComponent({
           <Layout v-slots={{ default: () => <RouterView /> }} />
         )}
       </>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">

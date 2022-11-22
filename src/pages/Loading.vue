@@ -1,23 +1,26 @@
 <script lang="tsx">
-import { defineComponent, withDefaults, ref } from "vue";
+import { defineComponent, withDefaults, ref } from 'vue'
 
 export default defineComponent({
-  name: "loading",
+  name: 'loading',
   props: {
-    msg: String,
+    msg: String
   },
   setup(props) {
     let { msg } = props
-    if (!msg) { msg = "加载中，请稍等" }
+    if (!msg) {
+      msg = '加载中，请稍等'
+    }
     return () => (
       <>
         <div class="loading">
-          {msg}<span class="loading_dot">. . .</span>
+          {msg}
+          <span class="loading_dot">. . .</span>
         </div>
       </>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">
@@ -30,7 +33,7 @@ export default defineComponent({
   height: 200px;
   position: relative;
   border-radius: 999px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   border: 3px solid $darkColor;
   position: relative;
 
@@ -47,7 +50,7 @@ export default defineComponent({
 }
 
 .loading::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 6px 6px 6px 6px;
   animation: rotate 2s linear infinite;
@@ -62,7 +65,7 @@ export default defineComponent({
 
   25% {
     width: 1rem;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 
   50% {
@@ -72,7 +75,7 @@ export default defineComponent({
 
   75% {
     width: 1rem;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 
   100% {

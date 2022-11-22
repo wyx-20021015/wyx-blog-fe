@@ -1,9 +1,9 @@
-import { Tag } from "./tag"
+import { Tag } from './tag'
 export declare interface ArticleData {
-  title: string;
-  tags: Array<Tag>;
-  visited?: Number;
-  digest: string;
-  _id?: string;
-  content?: string;
+  title: string
+  tags: Array<Tag>
+  visited?: Number
+  digest: string
+  _id?: string
+  content?: string
 }

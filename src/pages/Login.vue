@@ -1,27 +1,26 @@
 <script lang="tsx">
-import { defineComponent, ref, onMounted } from "vue";
-import Token from "../utils/token"
-import router from "../router"
-import { login } from "../service/login"
-import WBtn from "../components/wBtn.vue"
+import { defineComponent, ref, onMounted } from 'vue'
+import Token from '../utils/token'
+import router from '../router'
+import { login } from '../service/login'
+import WBtn from '../components/wBtn.vue'
 const { getToken } = Token
-
 
 export default defineComponent({
   setup(props) {
     onMounted(() => {
       if (getToken()) {
-        if (confirm("已登录, 是否前往创作界面?"))
-          router.push({ name: "admin-article" });
+        if (confirm('已登录, 是否前往创作界面?'))
+          router.push({ name: 'admin-article' })
       }
-    });
-    const password = ref("");
+    })
+    const password = ref('')
 
     async function toLogin() {
-      const res = await login(password.value);
+      const res = await login(password.value)
       const success = res.success
-      console.log(success, "-********************-");
-      if (success) router.push({ name: "admin" });
+      console.log(success, '-********************-')
+      if (success) router.push({ name: 'admin' })
     }
     return () => (
       <>
@@ -35,9 +34,9 @@ export default defineComponent({
           <WBtn text="登录" onClick={toLogin} />
         </div>
       </>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   props: {
@@ -8,9 +8,9 @@ export default defineComponent({
   setup(props) {
     let { msg } = props
     msg = msg.trim()
-    const msgShowed = ref("")
+    const msgShowed = ref('')
     let i = 0
-    const timer = window.setInterval(showMsg, 200);
+    const timer = window.setInterval(showMsg, 200)
     function showMsg() {
       // $:回退
       // ^:等待一拍
@@ -20,12 +20,13 @@ export default defineComponent({
       }
       let currChar = msg[i]
       // console.log(msg[i], i)
-      if (currChar === "$") {
-        msgShowed.value = msgShowed.value.substring(0, msgShowed.value.length - 1)
-      }
-      else if (currChar === "^") {
-      }
-      else {
+      if (currChar === '$') {
+        msgShowed.value = msgShowed.value.substring(
+          0,
+          msgShowed.value.length - 1
+        )
+      } else if (currChar === '^') {
+      } else {
         msgShowed.value += msg[i]
       }
       i++
@@ -35,9 +36,9 @@ export default defineComponent({
         <span class="show-message-msg" v-html={msgShowed.value}></span>
         <span class="show-message-cursor">_</span>
       </div>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">

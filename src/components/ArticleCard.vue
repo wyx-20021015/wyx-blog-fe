@@ -1,17 +1,17 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
-import { ArticleData } from "../types/ArticleData"
-import router from "../router"
+import { defineComponent, ref } from 'vue'
+import { ArticleData } from '../types/ArticleData'
+import router from '../router'
 export default defineComponent({
-  name: "ArticleCard",
+  name: 'ArticleCard',
   props: {
-    data: { type: Object as () => ArticleData, required: true },
+    data: { type: Object as () => ArticleData, required: true }
   },
   setup(props) {
     const { data } = props
     const gotoArticleDetail = () => {
       router.push({
-        name: "article-detail",
+        name: 'article-detail',
         params: {
           id: data._id
         }
@@ -20,21 +20,19 @@ export default defineComponent({
     return () => (
       <>
         <div class="articledetail" onClick={() => gotoArticleDetail()}>
-          <div class="articledetail-title">
-            {data.title}
-          </div>
+          <div class="articledetail-title">{data.title}</div>
           <div class="articledetail-digest">{data.digest}</div>
           <div class="articledetail-tags">
-            {data.tags.map(item =>
-              (<div class="articledetail-tags-tag">{item.name}</div>)
-            )}
+            {data.tags.map((item) => (
+              <div class="articledetail-tags-tag">{item.name}</div>
+            ))}
             <div class="articledetail-visited">{data.visited}</div>
           </div>
         </div>
       </>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">
@@ -42,12 +40,12 @@ export default defineComponent({
   height: 6rem;
   position: relative;
   background-color: $bgColor-light;
-  border-radius: .8rem;
-  padding: .8rem;
+  border-radius: 0.8rem;
+  padding: 0.8rem;
   box-sizing: border-box;
 
   &:hover {
-    filter: brightness(1.4)
+    filter: brightness(1.4);
   }
 
   &-tags {
@@ -60,9 +58,9 @@ export default defineComponent({
 
     &-tag {
       color: $font-light;
-      border-radius: .7rem;
+      border-radius: 0.7rem;
       border: 3px solid $font-light;
-      padding: .3rem;
+      padding: 0.3rem;
     }
   }
 

@@ -1,14 +1,14 @@
 <script lang="tsx">
-import { defineComponent, ref, Ref, watch, toRef } from "vue";
-import store from "../store"
+import { defineComponent, ref, Ref, watch, toRef } from 'vue'
+import store from '../store'
 
-import { getArticleByOffset } from "../service/article"
-import { Tag } from "../types/tag"
-import ArticleCard from "../components/ArticleCard.vue"
-import { ArticleData } from "../types/ArticleData";
-import Tags from "../components/tags.vue"
-import router from "../router";
-import ShowMessage from "../components/showMessage.vue"
+import { getArticleByOffset } from '../service/article'
+import { Tag } from '../types/tag'
+import ArticleCard from '../components/ArticleCard.vue'
+import { ArticleData } from '../types/ArticleData'
+import Tags from '../components/tags.vue'
+import router from '../router'
+import ShowMessage from '../components/showMessage.vue'
 
 export default defineComponent({
   props: {
@@ -26,23 +26,25 @@ export default defineComponent({
     let tags: Tag[] = store.state.tags
     let data_: Ref<ArticleData[]> = ref([])
 
-
     const { offset, id, tag } = props
     const work = async (offset, tag, id) => {
-      console.log("get something")
       let { data: data__ } = await getArticleByOffset(offset, tag, id)
       data_.value = data__
-      console.log(data_.value)
+      console.log(data_.value, 'data_')
     }
 
-    const tag_ = toRef(props, "tag");
-    const offset_ = toRef(props, "offset")
-    const id_ = toRef(props, "id")
+    const tag_ = toRef(props, 'tag')
+    const offset_ = toRef(props, 'offset')
+    const id_ = toRef(props, 'id')
 
-    watch([tag_, offset_, id_], ([newTag, newOffset, newId], oldVal) => {
-      data_.value = []
-      work(newOffset, newTag, newId);
-    }, { immediate: true })
+    watch(
+      [tag_, offset_, id_],
+      ([newTag, newOffset, newId], oldVal) => {
+        data_.value = []
+        work(newOffset, newTag, newId)
+      },
+      { immediate: true }
+    )
     work(offset, tag, id)
 
     const prePage = () => {
@@ -76,24 +78,29 @@ export default defineComponent({
     return () => (
       <div class="article">
         <div class="article-list">
-          {
-            data_.value.map(item => {
-              return (
-                <ArticleCard data={item} />
-              )
-            })
-          }
-          {data_.value.length === 0 && <div class="article-list-none"><ShowMessage msg={content} /></div>}
+          {data_.value !== null &&
+            data_.value.map((item) => {
+              return <ArticleCard data={item} />
+            })}
+          {(data_.value?.length === 0 || data_.value === null) && (
+            <div class="article-list-none">
+              <ShowMessage msg={content} />
+            </div>
+          )}
         </div>
         <div class="article-page-controller">
-          <div class="article-page-controller-btn" onClick={() => prePage()}>上一页</div>
-          <div class="article-page-controller-btn" onClick={() => nextPage()}>下一页</div>
+          <div class="article-page-controller-btn" onClick={() => prePage()}>
+            上一页
+          </div>
+          <div class="article-page-controller-btn" onClick={() => nextPage()}>
+            下一页
+          </div>
         </div>
         <Tags data={tags} />
       </div>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">

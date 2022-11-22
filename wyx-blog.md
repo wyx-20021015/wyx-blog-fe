@@ -1,55 +1,38 @@
-# wyx-blog接口定义
+# wyx-blog 接口定义
+
 ## 文章(主页)
 
-```/article```
+`/article`
 
 ### 按页获取文章
 
-```/article?offset=xx```
+`/article?offset=xx`
 
 ### 获取文章详情
 
-```/article/detail/:id```
+`/article/detail/:id`
 
 ### 搜索文章
 
-```/article/search?q=xx```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+`/article/search?q=xx`
 
 ## 留言
 
 ### 按页获取留言
 
-```/message?offset=?```
+`/message?offset=?`
 
 > GET
 
 ### 发布留言
 
-```/message```
+`/message`
 
 > POST
 
 ### 删除留言
 
-```/message/:id```
+`/message/:id`
 
 > DELETE
 

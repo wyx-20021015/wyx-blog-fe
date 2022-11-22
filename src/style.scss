@@ -5,14 +5,14 @@
 }
 
 body {
-  background: url("./assets/img/bg.jpg") no-repeat fixed;
+  background: url('./assets/img/bg.jpg') no-repeat fixed;
   background-size: 100% 100%;
   z-index: -3;
   position: relative;
 }
 
 body:before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   right: 0;
@@ -25,7 +25,7 @@ body:before {
 
 body:after {
   z-index: -1;
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   right: 0;

@@ -1,7 +1,7 @@
 <script lang="tsx">
-import { defineComponent, ref, Ref } from "vue";
-import { Tag } from "../types/tag"
-import router from "../router"
+import { defineComponent, ref, Ref } from 'vue'
+import { Tag } from '../types/tag'
+import router from '../router'
 export default defineComponent({
   props: {
     data: { type: Object as () => Tag, required: true },
@@ -9,9 +9,14 @@ export default defineComponent({
     inputTag: Boolean
   },
   setup(props) {
-    const { data, currTags, inputTag } = props;
+    const { data, currTags, inputTag } = props
     const hasTag = (tag: Tag) => {
-      if (currTags === undefined || tag === undefined || currTags.value === undefined) return -1
+      if (
+        currTags === undefined ||
+        tag === undefined ||
+        currTags.value === undefined
+      )
+        return -1
       // console.log(currTags.value.length, "*/*/*/*/*/")
       for (let i = 0; i < currTags.value.length; i++) {
         if (currTags.value[i].name === tag.name) return i
@@ -24,12 +29,10 @@ export default defineComponent({
         let res = hasTag(data)
         if (res != -1) {
           currTags.value.splice(res, 1)
-        }
-        else {
+        } else {
           currTags.value.push(data)
         }
-      }
-      else {
+      } else {
         router.replace({
           name: `article`,
           query: {
@@ -38,19 +41,20 @@ export default defineComponent({
           }
         })
       }
-
     }
     return () => (
-      <div class={hasTag(data as any) != -1 ? "tag-item-active" : ""} onClick={() => searchTag()}>
+      <div
+        class={hasTag(data as any) != -1 ? 'tag-item-active' : ''}
+        onClick={() => searchTag()}
+      >
         <div class="tag-item">
           <div class="tag-item-name">{(data as any).name}</div>
           <div class="tag-item-count">{(data as any).count}</div>
         </div>
       </div>
-
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">

@@ -1,23 +1,24 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
-import { navigateTo } from "../router/navigateTo"
+import { defineComponent, ref } from 'vue'
+import { navigateTo } from '../router/navigateTo'
 export default defineComponent({
   setup(props, { slots }) {
     return () => (
       <div class="admin-container">
         <div class="admin-container-sidenav">
-          <div onClick={() => navigateTo("/admin/article")}>文章管理</div>
-          <div onClick={() => navigateTo("/admin/log")}>日志</div>
-          <div onClick={() => navigateTo("/admin/todo")}>todo list</div>
-          <div onClick={() => navigateTo("/admin/message")}>留言审核</div>
-          <div onClick={() => navigateTo("/")}>返回首页</div>
+          <div onClick={() => navigateTo('/admin/article')}>文章管理</div>
+          <div onClick={() => navigateTo('/admin/log')}>日志</div>
+          <div onClick={() => navigateTo('/admin/todo')}>todo list</div>
+          <div onClick={() => navigateTo('/admin/message')}>留言审核</div>
+          <div onClick={() => navigateTo('/')}>返回首页</div>
         </div>
-        <div class="admin-container-outview">{slots.default && slots.default()}</div>
-
+        <div class="admin-container-outview">
+          {slots.default && slots.default()}
+        </div>
       </div>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">
@@ -57,7 +58,6 @@ export default defineComponent({
     flex: 1;
     height: 100vh;
     padding: 2% 8% 2% 8%;
-    // overflow: scroll;
   }
 }
 </style>

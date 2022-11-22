@@ -1,7 +1,12 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios"
-import BASE_URL from "../constants/baseURL"
-import { httpRes } from "../types/httpRes"
-import Token from "../utils/token"
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosError
+} from 'axios'
+import BASE_URL from '../constants/baseURL'
+import { httpRes } from '../types/httpRes'
+import Token from '../utils/token'
 const { getToken } = Token
 class WRequest {
   private instance: AxiosInstance
@@ -15,27 +20,24 @@ class WRequest {
     return new Promise<any>((resolve, reject) => {
       this.instance.interceptors.request.use(
         (config) => {
-          const token = getToken();
-          if (token) config.headers.Authorization = `Bearer ${token}`;
-          return config;
+          const token = getToken()
+          if (token) config.headers.Authorization = `Bearer ${token}`
+          return config
         },
         (err) => {
-          console.error(err);
-          return err;
+          console.error(err)
+          return err
         }
-      );
-      this.instance.request(config)
+      )
+      this.instance
+        .request(config)
         .then((res: AxiosResponse<httpRes<T>>) => {
-          if (res.data && res.data.status) {
-            if (res.data.status !== 200) {
-              alert(res.data.msg);
-              resolve({ ...res.data, data: null });
-            } else {
-              resolve(res.data);
-            }
+          if (res.data && res.data.success === true) {
+            resolve(res.data)
           } else {
-            console.log("# request then", { res });
-            throw new Error("bad request");
+            if (res.data.msg !== null && res.data.msg !== undefined)
+              alert(res.data.msg)
+            throw new Error(`bad request for ${config.url}`)
           }
         })
         .catch((err: AxiosError) => {
@@ -43,7 +45,7 @@ class WRequest {
           resolve({
             data: null,
             status: 400,
-            msg: "出错",
+            msg: '出错',
             success: false
           })
         })
@@ -66,4 +68,8 @@ class WRequest {
   }
 }
 const wRequest = new WRequest()
-export default wRequest;
+export default wRequest
+export * from './article'
+export * from './login'
+export * from './tag'
+export * from './file'

@@ -1,17 +1,11 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   setup(props) {
-    return () => (
-      <>
-        log
-      </>
-    );
-  },
-});
+    return () => <>log</>
+  }
+})
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -1,6 +1,6 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
-import ShowMessage from "../components/showMessage.vue"
+import { defineComponent, ref } from 'vue'
+import ShowMessage from '../components/showMessage.vue'
 
 export default defineComponent({
   setup(props) {
@@ -11,9 +11,9 @@ export default defineComponent({
       <div class="not-found">
         <ShowMessage msg={content} />
       </div>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">

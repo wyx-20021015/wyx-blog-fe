@@ -1,38 +1,53 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
-import { createArticle } from "../../service/article"
-import MdEditor from "../../components/mdEditor.vue"
-import WBtn from "../../components/wBtn.vue"
-import Tags from "../../components/tags.vue"
-import { Tag } from "../../types/tag"
+import { defineComponent, ref } from 'vue'
+import { createArticle } from '../../service/article'
+import MdEditor from '../../components/mdEditor.vue'
+import WBtn from '../../components/wBtn.vue'
+import Tags from '../../components/tags.vue'
+import { Tag } from '../../types/tag'
 export default defineComponent({
   setup(props) {
-    const text = ref("")
-    const title = ref("")
-    const digest = ref("")
+    const text = ref('')
+    const title = ref('')
+    const digest = ref('')
     const currTags = ref<Tag[]>([])
     const postArticle = async () => {
       // text.value = text.value.trim()
       title.value = title.value.trim()
       digest.value = digest.value.trim()
-      if (text.value.length === 0 || title.value.length === 0 || digest.value.length === 0) {
-        alert("内容、标题、摘要不能为空！")
+      if (
+        text.value.length === 0 ||
+        title.value.length === 0 ||
+        digest.value.length === 0
+      ) {
+        alert('内容、标题、摘要不能为空！')
         return
       }
-      return await createArticle({ content: text.value, title: title.value, digest: digest.value, tags: currTags.value })
+      return await createArticle({
+        content: text.value,
+        title: title.value,
+        digest: digest.value,
+        tags: currTags.value
+      })
     }
     return () => (
-      < >
+      <>
         <div class="admin-article">
           <div class="admin-article-top">
             <div class="admin-article-top-t">
               <div class="admin-article-top-t-addInfo">
                 <div class="admin-article-top-t-addInfo-infoName">标题</div>
-                <input class="admin-article-top-t-addInfo-i" v-model={title.value} />
+                <input
+                  class="admin-article-top-t-addInfo-i"
+                  v-model={title.value}
+                />
               </div>
               <div class="admin-article-top-t-addInfo">
                 <div class="admin-article-top-t-addInfo-infoName">摘要</div>
-                <input class="admin-article-top-t-addInfo-i" v-model={digest.value} />
+                <input
+                  class="admin-article-top-t-addInfo-i"
+                  v-model={digest.value}
+                />
               </div>
             </div>
 
@@ -43,11 +58,15 @@ export default defineComponent({
           </div>
           <WBtn text="确认投稿" onClick={() => postArticle()} />
         </div>
-        <Tags currTags={currTags} style="top:unset;bottom: 20px;height:30vh;left:15px;" isInputTag={true} />
+        <Tags
+          currTags={currTags}
+          style="top:unset;bottom: 20px;height:30vh;left:15px;"
+          isInputTag={true}
+        />
       </>
-    );
-  },
-});
+    )
+  }
+})
 </script>
 
 <style lang="scss">
@@ -73,15 +92,13 @@ export default defineComponent({
     }
   }
 
-
-
   &-top {
     display: flex;
     justify-content: flex-start;
     width: 100%;
 
     &-tagmenu {
-      flex: 1
+      flex: 1;
     }
 
     &-t {
@@ -106,13 +123,13 @@ export default defineComponent({
           height: 1.5rem;
           flex: 1;
           max-width: 700px;
-          padding: .2rem 10px;
+          padding: 0.2rem 10px;
           outline: 0;
           border: 0;
           background-color: $bgColor-light;
           font-size: 1.2rem;
           line-height: 1.5rem;
-          border-radius: .5rem;
+          border-radius: 0.5rem;
         }
       }
     }
