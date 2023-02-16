@@ -19,7 +19,7 @@ export default defineComponent({
     async function toLogin() {
       const res = await login(password.value)
       const success = res.success
-      console.log(success, '-********************-')
+      // console.log(success, '-********************-')
       if (success) router.push({ name: 'admin' })
     }
     return () => (

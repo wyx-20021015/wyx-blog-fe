@@ -8,7 +8,7 @@ export default defineComponent({
     const router = useRouter()
     let overflow = router.currentRoute.value.meta.overflow
     setTimeout(() => {
-      console.log('layout', router.currentRoute.value)
+      // console.log('layout', router.currentRoute.value)
     }, 1000)
 
     return () => (

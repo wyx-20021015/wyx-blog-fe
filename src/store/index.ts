@@ -13,10 +13,15 @@ const store = createStore<stateType>({
       tags
     }
   },
+  getters: {
+    getTags(state) {
+      console.log(state, 'in getter')
+      return state.tags
+    }
+  },
   mutations: {
     setTags(state: stateType, payload: Array<Tag>) {
-      this.state.tags = payload
-      console.log(this.state.tags)
+      state.tags = payload
     }
   },
   actions: {

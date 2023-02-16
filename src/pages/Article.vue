@@ -23,14 +23,13 @@ export default defineComponent({
     }
   },
   setup(props) {
-    let tags: Tag[] = store.state.tags
     let data_: Ref<ArticleData[]> = ref([])
 
     const { offset, id, tag } = props
     const work = async (offset, tag, id) => {
       let { data: data__ } = await getArticleByOffset(offset, tag, id)
       data_.value = data__
-      console.log(data_.value, 'data_')
+      // console.log(data_.value, 'data_')
     }
 
     const tag_ = toRef(props, 'tag')
@@ -96,7 +95,7 @@ export default defineComponent({
             下一页
           </div>
         </div>
-        <Tags data={tags} />
+        <Tags />
       </div>
     )
   }

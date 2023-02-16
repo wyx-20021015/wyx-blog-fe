@@ -30,7 +30,7 @@ export default defineComponent({
       digest.value = res.data.digest
       title.value = res.data.title
       tags.value = res.data.tags
-      console.log(res.data)
+      // console.log(res.data)
     }
     getData()
 
@@ -60,7 +60,7 @@ export default defineComponent({
     }
     const toUpdate_ = () => {
       status.value = 2
-      console.log(status.value)
+      // console.log(status.value)
       isPreview.value = false
     }
     const preview_ = () => {

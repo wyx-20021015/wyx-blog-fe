@@ -1,20 +1,24 @@
 <script lang="tsx">
-import { defineComponent, ref, Ref } from 'vue'
+import { defineComponent, ref, Ref, watch } from 'vue'
 import { Tag } from '../types/tag'
 import TagItem from './tag-item.vue'
 import store from '../store'
 export default defineComponent({
   props: {
-    data: { type: Object as () => Tag[] },
     tagStyle: String,
     currTags: Object as () => Ref<Tag[]>,
     isInputTag: Boolean
   },
   setup(props) {
-    let data = ref(store.state.tags)
+    let data = ref<Tag[]>(store.getters.getTags)
+    const fetchTags = async () => {
+      await store.dispatch('getTags')
+      data.value = store.getters.getTags
+    }
+    if (!data.value || data.value.length === 0) { fetchTags() }
     let { tagStyle, currTags, isInputTag } = props
     isInputTag = isInputTag === undefined ? false : isInputTag
-    console.log(isInputTag)
+    // console.log(isInputTag)
     const isInputing = ref(false)
     const inputLength = ref(' ')
     const newTag = () => {
