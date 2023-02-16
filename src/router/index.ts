@@ -11,10 +11,6 @@ import Loading from '../pages/Loading.vue'
 
 import setTitle from '../utils/setTitle'
 
-const AboutMe = defineAsyncComponent({
-  loader: () => import('../pages/AboutMe.vue'),
-  loadingComponent: Loading
-})
 const Article = defineAsyncComponent({
   loader: () => import('../pages/Article.vue'),
   loadingComponent: Loading
@@ -107,7 +103,7 @@ let routes: RouteRecordRaw[] = [
     meta: {
       title: '关于我'
     },
-    component: AboutMe
+    redirect: 'http://www.wangyixuan2002.cn'
   },
 
   {
