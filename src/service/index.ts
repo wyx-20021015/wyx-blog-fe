@@ -32,12 +32,12 @@ class WRequest {
       this.instance
         .request(config)
         .then((res: AxiosResponse<httpRes<T>>) => {
-          if (res.data && res.data.success === true) {
+          if (res.data.success === true) {
             resolve(res.data)
           } else {
             if (res.data.msg !== null && res.data.msg !== undefined)
               alert(res.data.msg)
-            throw new Error(`bad request for ${config.url}`)
+            throw new Error(res.data.msg)
           }
         })
         .catch((err: AxiosError) => {
@@ -45,7 +45,7 @@ class WRequest {
           resolve({
             data: null,
             status: 400,
-            msg: '出错',
+            msg: err.message || '出错',
             success: false
           })
         })
