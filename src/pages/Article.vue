@@ -92,7 +92,7 @@ export default defineComponent({
           <div class="article-page-controller-btn" >
             <WBtn onClick={() => prePage()} text="上一页" size="middle">上一页</WBtn>
           </div>
-          <div class="article-page-controller-btn" onClick={() => nextPage()}>
+          <div class="article-page-controller-btn">
             <WBtn onClick={() => nextPage()} text="下一页" size='middle'>下一页</WBtn>
           </div>
         </div>
