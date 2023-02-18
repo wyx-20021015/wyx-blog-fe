@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { defineComponent, ref, Ref, watch, toRef } from 'vue'
-import store from '../store'
+
 
 import { getArticleByOffset } from '../service/article'
 import { Tag } from '../types/tag'
@@ -9,6 +9,7 @@ import { ArticleData } from '../types/ArticleData'
 import Tags from '../components/tags.vue'
 import router from '../router'
 import ShowMessage from '../components/showMessage.vue'
+import WBtn from "../components/wBtn.vue"
 
 export default defineComponent({
   props: {
@@ -88,11 +89,11 @@ export default defineComponent({
           )}
         </div>
         <div class="article-page-controller">
-          <div class="article-page-controller-btn" onClick={() => prePage()}>
-            上一页
+          <div class="article-page-controller-btn" >
+            <WBtn onClick={() => prePage()} text="上一页" size="middle">上一页</WBtn>
           </div>
           <div class="article-page-controller-btn" onClick={() => nextPage()}>
-            下一页
+            <WBtn onClick={() => nextPage()} text="下一页" size='middle'>下一页</WBtn>
           </div>
         </div>
         <Tags />
@@ -112,14 +113,11 @@ export default defineComponent({
 
   &-page-controller {
     color: white;
-    height: 50px;
-    line-height: 50px;
+    // height: 50px;
+    // line-height: 50px;
     display: flex;
     justify-content: space-around;
-
-    &-btn {
-      cursor: pointer;
-    }
+    margin-bottom: 10px;
   }
 
   &-list {
@@ -128,6 +126,7 @@ export default defineComponent({
     flex-direction: column;
     gap: 15px;
     min-height: 420px;
+    margin-bottom: 10px;
   }
 }
 </style>

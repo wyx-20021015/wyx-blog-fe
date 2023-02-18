@@ -3,6 +3,7 @@ import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router';
 import myAvator from '../assets/img/myAvator.png'
 import { navigateTo } from '../router/index'
+import WBtn from "../components/wBtn.vue"
 export default defineComponent({
   setup(props, { slots }) {
     const router = useRouter()
@@ -26,12 +27,10 @@ export default defineComponent({
 
               </div>
               <div class="navBar">
-                <span onClick={() => navigateTo('/article?offset=1')}>
-                  文章
-                </span>
-                <span onClick={() => navigateTo('/resume')}>简历</span>
-                <span onClick={() => navigateTo('/admin')}>管理</span>
-                <span onClick={() => navigateTo('/file')}>网盘</span>
+                <WBtn onClick={() => navigateTo('/article?offset=1')} text="文章" size="small"></WBtn>
+                <WBtn onClick={() => { window.open('http://resume.wangyixuan2002.cn/') }} text="简历" size="small"></WBtn>
+                <WBtn onClick={() => navigateTo('/admin')} text="管理" size="small"></WBtn>
+                <WBtn onClick={() => navigateTo('/file')} text="网盘" size="small"></WBtn>
               </div>
             </div>
           </div>
@@ -85,6 +84,11 @@ export default defineComponent({
   cursor: pointer;
 }
 
+.navBar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
 
 .myAvatar {
   position: relative;

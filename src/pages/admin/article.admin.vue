@@ -5,6 +5,7 @@ import MdEditor from '../../components/mdEditor.vue'
 import WBtn from '../../components/wBtn.vue'
 import Tags from '../../components/tags.vue'
 import { Tag } from '../../types/tag'
+import store from '../../store'
 export default defineComponent({
   setup(props) {
     const text = ref('')
@@ -12,7 +13,6 @@ export default defineComponent({
     const digest = ref('')
     const currTags = ref<Tag[]>([])
     const postArticle = async () => {
-      // text.value = text.value.trim()
       title.value = title.value.trim()
       digest.value = digest.value.trim()
       if (
@@ -23,12 +23,24 @@ export default defineComponent({
         alert('内容、标题、摘要不能为空！')
         return
       }
-      return await createArticle({
+      const res = await createArticle({
         content: text.value,
         title: title.value,
         digest: digest.value,
         tags: currTags.value
       })
+      if (res.success === true) {
+        alert('投稿成功')
+        text.value = ''
+        title.value = ''
+        digest.value = ''
+        currTags.value = []
+      }
+      else {
+        alert(res.msg ?? '投稿失败')
+        console.log(res)
+      }
+      store.dispatch("getTags")
     }
     return () => (
       <>
