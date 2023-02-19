@@ -26,7 +26,7 @@ export default defineComponent({
             {data.tags.map((item) => (
               <div class="articledetail-tags-tag">{item.name}</div>
             ))}
-            <div class="articledetail-visited">{data.visited}</div>
+            <div class="articledetail-visited">👀{data.visited}</div>
           </div>
         </div>
       </>

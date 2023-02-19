@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router';
 import myAvator from '../assets/img/myAvator.png'
 import { navigateTo } from '../router/index'
 import WBtn from "../components/wBtn.vue"
+import Tags from "../components/tags.vue"
+import { Tag } from "../types/tag"
 export default defineComponent({
   setup(props, { slots }) {
     const router = useRouter()
@@ -11,7 +13,7 @@ export default defineComponent({
     setTimeout(() => {
       // console.log('layout', router.currentRoute.value)
     }, 1000)
-
+    const currTags = ref<Tag[]>([])
     return () => (
       <>
         <div class={router.currentRoute.value.meta.overflow ? 'container_' : 'container'}>
@@ -36,6 +38,7 @@ export default defineComponent({
           </div>
           <div class="router-view">{slots.default && slots.default()}</div>
         </div>
+        <Tags currTags={currTags} routerTag={true}></Tags>
       </>
     )
   }

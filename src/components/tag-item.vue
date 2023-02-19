@@ -6,10 +6,11 @@ export default defineComponent({
   props: {
     data: { type: Object as () => Tag, required: true },
     currTags: Object as () => Ref<Tag[]>,
-    inputTag: Boolean
+    inputTag: Boolean,
+    routerTag: Boolean
   },
   setup(props) {
-    const { data, currTags, inputTag } = props
+    const { data, currTags, inputTag, routerTag = false } = props
     const hasTag = (tag: Tag) => {
       if (
         currTags === undefined ||
@@ -17,7 +18,6 @@ export default defineComponent({
         currTags.value === undefined
       )
         return -1
-      // console.log(currTags.value.length, "*/*/*/*/*/")
       for (let i = 0; i < currTags.value.length; i++) {
         if (currTags.value[i].name === tag.name) return i
       }
@@ -25,21 +25,36 @@ export default defineComponent({
     }
     const searchTag = () => {
       if (inputTag === true) return
+      let res: number
       if (currTags != undefined) {
-        let res = hasTag(data)
+        res = hasTag(data)
         if (res != -1) {
-          currTags.value.splice(res, 1)
+          if (routerTag) currTags.value = []
+          else
+            currTags.value.splice(res, 1)
+
         } else {
-          currTags.value.push(data)
+          if (routerTag) currTags.value = [data]
+          else
+            currTags.value.push(data)
         }
-      } else {
-        router.replace({
-          name: `article`,
-          query: {
-            tag: (data as any).name,
-            offset: 1
-          }
-        })
+      }
+      if (routerTag === true) {
+        if (res !== -1)
+          router.replace({
+            name: `article`,
+            query: {
+              offset: 1
+            }
+          })
+        else
+          router.replace({
+            name: `article`,
+            query: {
+              tag: (data as any).name,
+              offset: 1
+            }
+          })
       }
     }
     return () => (

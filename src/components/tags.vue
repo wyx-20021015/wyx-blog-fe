@@ -7,7 +7,8 @@ export default defineComponent({
   props: {
     tagStyle: String,
     currTags: Object as () => Ref<Tag[]>,
-    isInputTag: Boolean
+    isInputTag: Boolean,
+    routerTag: Boolean
   },
   setup(props) {
     let data = ref<Tag[]>(store.getters.getTags)
@@ -16,7 +17,7 @@ export default defineComponent({
       data.value = store.getters.getTags
     }
     if (!data.value || data.value.length === 0) { fetchTags() }
-    let { tagStyle, currTags, isInputTag } = props
+    let { tagStyle, currTags, isInputTag, routerTag = false } = props
     isInputTag = isInputTag === undefined ? false : isInputTag
     // console.log(isInputTag)
     const isInputing = ref(false)
@@ -53,7 +54,7 @@ export default defineComponent({
     return () => (
       <div class="tags-list" style={tagStyle}>
         {data.value?.map((t) => (
-          <TagItem data={t} currTags={currTags} />
+          <TagItem data={t} currTags={currTags} routerTag={routerTag} />
         ))}
         {isInputTag &&
           (!isInputing.value ? (

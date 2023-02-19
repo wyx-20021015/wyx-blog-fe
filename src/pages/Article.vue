@@ -3,10 +3,8 @@ import { defineComponent, ref, Ref, watch, toRef } from 'vue'
 
 
 import { getArticleByOffset } from '../service/article'
-import { Tag } from '../types/tag'
 import ArticleCard from '../components/ArticleCard.vue'
 import { ArticleData } from '../types/ArticleData'
-import Tags from '../components/tags.vue'
 import router from '../router'
 import ShowMessage from '../components/showMessage.vue'
 import WBtn from "../components/wBtn.vue"
@@ -96,7 +94,6 @@ export default defineComponent({
             <WBtn onClick={() => nextPage()} text="下一页" size='middle'>下一页</WBtn>
           </div>
         </div>
-        <Tags />
       </div>
     )
   }
