@@ -16,11 +16,9 @@ export default defineComponent({
       title.value = title.value.trim()
       digest.value = digest.value.trim()
       if (
-        text.value.length === 0 ||
-        title.value.length === 0 ||
-        digest.value.length === 0
+        text.value.length === 0
       ) {
-        alert('内容、标题、摘要不能为空！')
+        alert('内容不能为空！')
         return
       }
       const res = await createArticle({
