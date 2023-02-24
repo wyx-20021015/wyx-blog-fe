@@ -13,8 +13,8 @@ class WRequest {
   constructor() {
     this.instance = axios.create({
       baseURL: BASE_URL,
-      timeout: 5000,
-      withCredentials: true
+      timeout: 5000
+      // withCredentials: true
     })
   }
   request<T>(config: AxiosRequestConfig): Promise<httpRes<T>> {
