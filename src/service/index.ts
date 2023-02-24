@@ -30,6 +30,7 @@ class WRequest {
           return err
         }
       )
+
       this.instance
         .request(config)
         .then((res: AxiosResponse<httpRes<T>>) => {

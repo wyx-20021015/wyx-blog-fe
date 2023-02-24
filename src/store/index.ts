@@ -15,7 +15,7 @@ const store = createStore<stateType>({
   },
   getters: {
     getTags(state) {
-      console.log(state, 'in getter')
+      // console.log(state, 'in getter')
       return state.tags
     }
   },
