@@ -6,7 +6,8 @@ const handleScroll = (container: HTMLElement, target: number) => {
       if (
         target === currentTop ||
         target === currentTop + 1 ||
-        target === currentTop - 1
+        target === currentTop - 1 ||
+        currentTop + window.innerHeight >= document.documentElement.scrollHeight
       ) {
         res(1)
       } else {
