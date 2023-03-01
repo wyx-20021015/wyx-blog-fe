@@ -18,3 +18,32 @@ $font-gray: rgb(59, 59, 59);
 $tag-border: rgb(123, 249, 228);
 $tag-font: rgb(169, 244, 201);
 $decorate: #a6f553cd;
+$maskBgc : #167362;
+$maskBorder: #04ec8b;
+$primary: #045a47bb;
+$scrollbar: #145b31;
+
+
+@mixin scrollbar() {
+  // firefox
+  scrollbar-width: thin;
+  scrollbar-color: $decorate $primary;
+
+  // chromium
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: $primary;
+  }
+
+  // 定义滚动条轨道：内阴影+圆角
+  &::-webkit-scrollbar-track {
+    background-color: $primary;
+  }
+
+  // 定义滑块：内阴影+圆角
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background-color: $decorate;
+  }
+}

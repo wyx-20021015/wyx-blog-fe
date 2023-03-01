@@ -34,3 +34,8 @@ body:after {
   background-color: rgba(205, 205, 173, 0.633);
   filter: blur(500px);
 }
+
+
+html {
+  @include scrollbar()
+}

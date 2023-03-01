@@ -13,11 +13,8 @@ import json from 'highlight.js/lib/languages/json'
 hljs.registerLanguage('json', json)
 VueMarkdownEditor.use(githubTheme, {
   Hljs: hljs,
-  extend(md) {
-    // md为 markdown-it 实例，可以在此处进行修改配置,并使用 plugin 进行语法扩展
-    // md.set(option).use(plugin);
-  }
+  extend(md) {}
 })
 VueMarkdownEditor.use(createTodoListPlugin())
 VueMarkdownEditor.use(createHighlightLinesPlugin())
-export default VueMarkdownEditor
+export { VueMarkdownEditor }

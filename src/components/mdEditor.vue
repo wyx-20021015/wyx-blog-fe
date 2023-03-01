@@ -4,7 +4,7 @@ export default defineComponent({
   props: {
     text: { type: Object as () => Ref<string> },
     todo: Boolean,
-    preview: Object as () => Ref<Boolean>
+    preview: Object as () => Ref<Boolean>,
   },
   setup(props) {
     let { text, todo, preview } = props

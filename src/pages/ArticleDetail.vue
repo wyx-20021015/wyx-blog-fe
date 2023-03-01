@@ -10,7 +10,7 @@ import { Tag } from '../types/tag'
 import WBtn from '../components/wBtn.vue'
 import Token from '../utils/token'
 import router from '../router'
-import { statSync } from 'fs'
+import MdRouter from '../components/MdRouter.vue'
 const { getToken } = Token
 export default defineComponent({
   props: {
@@ -82,6 +82,8 @@ export default defineComponent({
             <WBtn text="删除" onClick={() => delete_()} />
           </div>
         )}
+        <div class={'md-router'}><MdRouter></MdRouter></div>
+
       </div>
     )
   }
@@ -97,5 +99,23 @@ export default defineComponent({
 .btns {
   display: flex;
   justify-content: space-around;
+}
+
+.md-router {
+  position: fixed;
+  right: 15px;
+  top: 20vh;
+  background-color: white;
+  padding: 0 8px;
+  box-sizing: border-box;
+  max-width: 230px;
+  max-height: 55vh;
+  border-radius: 9px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include scrollbar();
 }
 </style>

@@ -81,7 +81,7 @@ export default defineComponent({
 <style lang="scss">
 .tags-list {
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 20px;
   gap: 10px;
   left: 30px;

@@ -6,11 +6,12 @@ import router from './router'
 import Admin from './layout/admin.vue'
 import None from './layout/none.vue'
 import store from './store'
+import TheMask from "./components/TheMask.vue"
 
 export default defineComponent({
   setup(props) {
     store.dispatch('getTags')
-
+    console.log("App render")
     return () => (
       <>
         {router.currentRoute.value.meta.admin ? (
@@ -20,12 +21,11 @@ export default defineComponent({
         ) : (
           <Layout v-slots={{ default: () => <RouterView /> }} />
         )}
+        <TheMask></TheMask>
       </>
     )
   }
 })
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

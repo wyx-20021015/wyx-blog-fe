@@ -1,7 +1,7 @@
 <script lang="tsx">
 import { defineComponent, ref, Ref } from 'vue'
 import { Tag } from '../types/tag'
-import router from '../router'
+import { jumpTo } from '../router'
 export default defineComponent({
   props: {
     data: { type: Object as () => Tag, required: true },
@@ -23,7 +23,7 @@ export default defineComponent({
       }
       return -1
     }
-    const searchTag = () => {
+    const searchTag = (e: MouseEvent) => {
       if (inputTag === true) return
       let res: number
       if (currTags != undefined) {
@@ -41,14 +41,14 @@ export default defineComponent({
       }
       if (routerTag === true) {
         if (res !== -1)
-          router.replace({
+          jumpTo(e, {
             name: `article`,
             query: {
               offset: 1
             }
           })
         else
-          router.replace({
+          jumpTo(e, {
             name: `article`,
             query: {
               tag: (data as any).name,
@@ -60,7 +60,7 @@ export default defineComponent({
     return () => (
       <div
         class={hasTag(data as any) != -1 ? 'tag-item-active' : ''}
-        onClick={() => searchTag()}
+        onClick={searchTag}
       >
         <div class="tag-item">
           <div class="tag-item-name">{(data as any).name}</div>

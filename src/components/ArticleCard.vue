@@ -1,7 +1,7 @@
 <script lang="tsx">
 import { defineComponent, ref } from 'vue'
 import { ArticleData } from '../types/ArticleData'
-import router from '../router'
+import { jumpTo } from '../router'
 export default defineComponent({
   name: 'ArticleCard',
   props: {
@@ -9,8 +9,8 @@ export default defineComponent({
   },
   setup(props) {
     const { data } = props
-    const gotoArticleDetail = () => {
-      router.push({
+    const gotoArticleDetail = (e: MouseEvent) => {
+      jumpTo(e, {
         name: 'article-detail',
         params: {
           id: data._id
@@ -19,7 +19,7 @@ export default defineComponent({
     }
     return () => (
       <>
-        <div class="articledetail" onClick={() => gotoArticleDetail()}>
+        <div class="articledetail" onClick={(e) => gotoArticleDetail(e)}>
           <div class="articledetail-title">{data.title}</div>
           <div class="articledetail-digest">{data.digest}</div>
           <div class="articledetail-tags">

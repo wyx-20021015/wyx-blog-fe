@@ -1,19 +1,21 @@
 <script lang="tsx">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useRouter } from 'vue-router';
 import myAvator from '../assets/img/myAvator.png'
-import { navigateTo } from '../router/index'
+import { jumpTo } from '../router/index'
 import WBtn from "../components/wBtn.vue"
 import Tags from "../components/tags.vue"
 import { Tag } from "../types/tag"
+
+
 export default defineComponent({
   setup(props, { slots }) {
-    const router = useRouter()
-    let overflow = router.currentRoute.value.meta.overflow
-    setTimeout(() => {
-      // console.log('layout', router.currentRoute.value)
-    }, 1000)
     const currTags = ref<Tag[]>([])
+    const router = useRouter()
+    watch(() => router.currentRoute.value.query, (newValue, oldValue) => {
+      currTags.value = [{ name: newValue.tag as string }]
+    }, { immediate: true })
+
     return () => (
       <>
         <div class={router.currentRoute.value.meta.overflow ? 'container_' : 'container'}>
@@ -29,16 +31,17 @@ export default defineComponent({
 
               </div>
               <div class="navBar">
-                <WBtn onClick={() => navigateTo('/article?offset=1')} text="文章" size="small"></WBtn>
+                <WBtn onClick={(e) => jumpTo(e, { name: 'article', query: { offset: 1 } })} text="文章" size="small"></WBtn>
                 <WBtn onClick={() => { window.open('http://resume.wangyixuan2002.cn/') }} text="简历" size="small"></WBtn>
-                <WBtn onClick={() => navigateTo('/admin')} text="管理" size="small"></WBtn>
-                <WBtn onClick={() => navigateTo('/file')} text="网盘" size="small"></WBtn>
+                <WBtn onClick={(e) => jumpTo(e, { path: '/admin' })} text="管理" size="small"></WBtn>
+                <WBtn onClick={(e) => jumpTo(e, { path: '/file' })} text="网盘" size="small"></WBtn>
               </div>
             </div>
           </div>
           <div class="router-view">{slots.default && slots.default()}</div>
         </div>
         <Tags currTags={currTags} routerTag={true}></Tags>
+
       </>
     )
   }

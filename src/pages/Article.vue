@@ -5,7 +5,7 @@ import { defineComponent, ref, Ref, watch, toRef } from 'vue'
 import { getArticleByOffset } from '../service/article'
 import ArticleCard from '../components/ArticleCard.vue'
 import { ArticleData } from '../types/ArticleData'
-import router from '../router'
+import { jumpTo } from '../router'
 import ShowMessage from '../components/showMessage.vue'
 import WBtn from "../components/wBtn.vue"
 
@@ -45,10 +45,10 @@ export default defineComponent({
     )
     work(offset, tag, id)
 
-    const prePage = () => {
+    const prePage = (e: MouseEvent) => {
       let offset__: number = parseInt(offset_.value)
       if (offset__ <= 1) return
-      router.replace({
+      jumpTo(e, {
         name: `article`,
         query: {
           tag: tag_.value,
@@ -57,9 +57,9 @@ export default defineComponent({
       })
     }
 
-    const nextPage = () => {
+    const nextPage = (e: MouseEvent) => {
       let offset__: number = parseInt(offset_.value)
-      router.replace({
+      jumpTo(e, {
         name: `article`,
         query: {
           tag: tag_.value,
@@ -88,10 +88,10 @@ export default defineComponent({
         </div>
         <div class="article-page-controller">
           <div class="article-page-controller-btn" >
-            <WBtn onClick={() => prePage()} text="上一页" size="middle">上一页</WBtn>
+            <WBtn onClick={(e) => prePage(e)} text="上一页" size="middle">上一页</WBtn>
           </div>
           <div class="article-page-controller-btn">
-            <WBtn onClick={() => nextPage()} text="下一页" size='middle'>下一页</WBtn>
+            <WBtn onClick={(e) => nextPage(e)} text="下一页" size='middle'>下一页</WBtn>
           </div>
         </div>
       </div>

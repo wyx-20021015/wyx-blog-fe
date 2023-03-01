@@ -18,6 +18,7 @@ export async function getArticleById(
   return await wRequest.get({ url: `/article/detail/${id}` })
 }
 export async function createArticle(data: ArticleData) {
+  handleImg(data)
   return wRequest.post({ url: `/article`, data })
 }
 export async function updateArticle(data: ArticleData) {
@@ -25,4 +26,11 @@ export async function updateArticle(data: ArticleData) {
 }
 export async function deleteArticle(id: string) {
   return wRequest.delete({ url: `article/detail/${id}` })
+}
+
+function handleImg(data: ArticleData) {
+  let content = data.content
+  const canvas = document.getElementById('canvas')
+  const regExp = /d/g
+  const imgs = content
 }

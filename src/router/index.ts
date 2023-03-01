@@ -15,10 +15,6 @@ const Article = defineAsyncComponent({
   loader: () => import('../pages/Article.vue'),
   loadingComponent: Loading
 })
-// const Message = defineAsyncComponent({
-//   loader: () => import("../pages/Message.vue"),
-//   loadingComponent: Loading,
-// });
 const Login = defineAsyncComponent({
   loader: () => import('../pages/Login.vue'),
   loadingComponent: Loading
@@ -178,4 +174,4 @@ router.beforeEach(async (to, from) => {
   setTitle((to.meta.title as string) || '嘿嘿嘿')
 })
 export default router
-export * from './navigateTo'
+export * from './jumpTo'

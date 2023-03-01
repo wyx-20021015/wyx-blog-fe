@@ -1,16 +1,16 @@
 <script lang="tsx">
 import { defineComponent, ref } from 'vue'
-import { navigateTo } from '../router/navigateTo'
+import { jumpTo } from '../router/jumpTo'
 export default defineComponent({
   setup(props, { slots }) {
     return () => (
       <div class="admin-container">
         <div class="admin-container-sidenav">
-          <div onClick={() => navigateTo('/admin/article')}>文章管理</div>
-          <div onClick={() => navigateTo('/admin/log')}>日志</div>
-          <div onClick={() => navigateTo('/admin/todo')}>todo list</div>
-          <div onClick={() => navigateTo('/admin/message')}>留言审核</div>
-          <div onClick={() => navigateTo('/')}>返回首页</div>
+          <div onClick={(e) => jumpTo(e, { path: '/admin/article' })}>文章管理</div>
+          <div onClick={(e) => jumpTo(e, { path: '/admin/log' })}>日志</div>
+          <div onClick={(e) => jumpTo(e, { path: '/admin/todo' })}>todo list</div>
+          <div onClick={(e) => jumpTo(e, { path: '/admin/message' })}>留言审核</div>
+          <div onClick={(e) => jumpTo(e, { path: '/' })}>返回首页</div>
         </div>
         <div class="admin-container-outview">
           {slots.default && slots.default()}
