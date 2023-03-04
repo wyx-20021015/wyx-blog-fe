@@ -103,8 +103,8 @@ export default defineComponent({
 <style lang="scss">
 .article {
   height: 100%;
-  width: 86vw;
-  max-width: 1000px;
+  width: 70vw;
+  // max-width: 1000px;
   display: flex;
   flex-direction: column;
 

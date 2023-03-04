@@ -81,15 +81,24 @@ export default defineComponent({
 <style lang="scss">
 .tags-list {
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 20px;
   gap: 10px;
   left: 30px;
   width: 30vw;
   flex-wrap: wrap;
-  max-width: 260px;
+  // max-width: 260px;
   overflow-y: auto;
   align-content: flex-start;
+  overflow: auto;
+  height: 180px;
+
+  @media screen and (max-width: 800px) {
+    height: 130px;
+    font-size: 14px;
+  }
+
+  @include scrollbar();
 
   &-input {
     height: 1.5rem;

@@ -103,7 +103,7 @@ export default defineComponent({
 
 .md-router {
   position: fixed;
-  right: 15px;
+  right: .3vw;
   top: 20vh;
   background-color: white;
   padding: 0 8px;
@@ -117,5 +117,9 @@ export default defineComponent({
   white-space: nowrap;
 
   @include scrollbar();
+
+  @media screen and (max-width:1400px) {
+    display: none;
+  }
 }
 </style>

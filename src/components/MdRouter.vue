@@ -50,12 +50,16 @@ export default defineComponent({
 
 <style lang="scss">
 .v-md-router {
-  width: 240px;
+  width: 12vw;
   font-size: 12px;
   overflow: hidden;
+  font-size: 10px;
+  box-sizing: border-box;
 
   &-item {
     border-bottom: 1px solid $lightColor;
   }
+
+  @media screen and (max-width: 800px) {}
 }
 </style>

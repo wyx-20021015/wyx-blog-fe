@@ -104,6 +104,12 @@ export default defineComponent({
   box-sizing: border-box;
   height: 160px;
 
+  @media screen and (max-width: 800px) {
+    & {
+      height: 80px;
+    }
+  }
+
   &-wrap {
     width: 180px;
     height: 180px;
@@ -113,6 +119,13 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     margin: 0 auto 20px auto;
+
+    @media screen and (max-width: 800px) {
+      & {
+        width: 100px;
+        height: 100px;
+      }
+    }
   }
 
   img {
