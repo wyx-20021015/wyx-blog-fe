@@ -39,3 +39,10 @@ body:after {
 html {
   @include scrollbar()
 }
+
+@media screen and (max-width:800px) {
+  html {
+    font-size: 10px;
+  }
+
+}

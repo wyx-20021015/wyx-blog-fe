@@ -86,5 +86,10 @@ export default defineComponent({
   border: 2px solid $tag-border;
   color: $tag-font;
   cursor: pointer;
+
+  @media screen and (max-width: 900px) {
+    padding: 2px 4px;
+    gap: 3px;
+  }
 }
 </style>

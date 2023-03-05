@@ -119,7 +119,10 @@ export default defineComponent({
   @include scrollbar();
 
   @media screen and (max-width:1400px) {
-    display: none;
+    & {
+      display: none;
+    }
+
   }
 }
 </style>

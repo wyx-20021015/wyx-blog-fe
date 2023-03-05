@@ -93,9 +93,12 @@ export default defineComponent({
   overflow: auto;
   height: 180px;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 900px) {
     height: 130px;
-    font-size: 14px;
+    font-size: 9px;
+    width: 20vw;
+    gap: 3px;
+
   }
 
   @include scrollbar();
