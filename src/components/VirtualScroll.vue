@@ -67,7 +67,7 @@ const renderData = computed<ArticleData[]>(() => {
   const realEnd = Math.min(end.value + pageItemCount.value, dataSource.value.length)
   const res = dataSource.value.slice(realStart, realEnd)
   // console.log(res)
-
+  // console.log(dataSource.value)
   return res
 })
 /**
@@ -97,14 +97,17 @@ const pageItemCount = computed<number>(() => {
 
 
 function onScroll(evt: UIEvent) {
-  // 获取触发滚动事件的元素
   const scrollDom = evt.target as HTMLDivElement
   if (!scrollDom) return
 
   // 获取滚动的距离
   const { scrollTop } = scrollDom
+  // 根据滚动的距离，计算此时视口顶部需要显示的第一个元素
   start.value = Math.floor(scrollTop / itemHeight.value)
-  startOffset.value = start.value * itemHeight.value
+
+  // 计算有了缓冲之后的start位置，根据有了缓冲之后的start位置来计算startOffset
+  let realStart = Math.max(0, start.value - pageItemCount.value)
+  startOffset.value = realStart * itemHeight.value
 }
 </script>
 
