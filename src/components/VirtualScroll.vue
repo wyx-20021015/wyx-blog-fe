@@ -96,17 +96,6 @@ const pageItemCount = computed<number>(() => {
 })
 
 
-
-
-// onMounted(() => {
-//   // 不直接在mounted中异步转同步，而是在init方法进行异步转同步。避免界面因为数据加载慢，导致渲染阻塞
-//   init()
-// })
-
-// async function init() {
-//   dataSource.value = await loadData()
-// }
-
 function onScroll(evt: UIEvent) {
   // 获取触发滚动事件的元素
   const scrollDom = evt.target as HTMLDivElement
@@ -114,17 +103,12 @@ function onScroll(evt: UIEvent) {
 
   // 获取滚动的距离
   const { scrollTop } = scrollDom
-  // console.log(scrollDom)
-  // 根据滚动的距离，计算此时视口顶部需要显示的第一个元素
   start.value = Math.floor(scrollTop / itemHeight.value)
   startOffset.value = start.value * itemHeight.value
 }
 </script>
 
 <template>
-  <!-- 实际开发中虚拟列表通常是位于某个dom容器下，并占满这个dom容器的整个高度，这里就是模拟这种情况 -->
-
-  <!-- scrollerContainer为支持滚动条的容器，定义整个虚拟列表的高度 -->
   <div class="scrollerContainer" ref="scrollerContainerRef" @scroll="onScroll">
     <div class="pillarDom" :style="{ height: `${pillarDomHeight}px` }"></div>
     <div class="contentList" :style="styleTranslate">
@@ -132,10 +116,6 @@ function onScroll(evt: UIEvent) {
         <ArticleCard :data="data">
         </ArticleCard>
       </div>
-      <!-- {data_.value !== null &&
-                                                                      data_.value.map((item) => {
-                                                                        return <ArticleCard data={item} />
-                                                                      })} -->
     </div>
   </div>
 </template>
@@ -163,7 +143,6 @@ function onScroll(evt: UIEvent) {
   top: 0;
   left: 0;
   right: 0;
-  flex-direction: column;
 }
 
 .item {
