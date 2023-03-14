@@ -54,6 +54,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  // height: 0;
 }
 
 .container_ {

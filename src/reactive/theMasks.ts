@@ -1,5 +1,5 @@
 import { reactive, ref } from '@vue/runtime-dom'
-import handleScroll from '../utils/handleScroll'
+// import {reactive,ref} from "vue"
 
 type MaskState = 'together' | 'spreading' | 'up' | 'none'
 

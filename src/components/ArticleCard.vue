@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, toRefs } from 'vue'
 import { ArticleData } from '../types/ArticleData'
 import { jumpTo } from '../router'
 export default defineComponent({
@@ -8,25 +8,25 @@ export default defineComponent({
     data: { type: Object as () => ArticleData, required: true }
   },
   setup(props) {
-    const { data } = props
+    const { data } = toRefs(props)
     const gotoArticleDetail = (e: MouseEvent) => {
       jumpTo(e, {
         name: 'article-detail',
         params: {
-          id: data._id
+          id: data.value._id
         }
       })
     }
     return () => (
       <>
         <div class="articledetail" onClick={(e) => gotoArticleDetail(e)}>
-          <div class="articledetail-title">{data.title}</div>
-          <div class="articledetail-digest">{data.digest}</div>
+          <div class="articledetail-title">{data.value.title}</div>
+          <div class="articledetail-digest">{data.value.digest}</div>
           <div class="articledetail-tags">
-            {data.tags.map((item) => (
+            {data.value.tags.map((item) => (
               <div class="articledetail-tags-tag">{item.name}</div>
             ))}
-            <div class="articledetail-visited">👀{data.visited}</div>
+            <div class="articledetail-visited">👀{data.value.visited}</div>
           </div>
         </div>
       </>
@@ -37,11 +37,12 @@ export default defineComponent({
 
 <style lang="scss">
 .articledetail {
-  height: 6rem;
+  height: 100px;
   position: relative;
   background-color: $bgColor-light;
   border-radius: 0.8rem;
   padding: 0.8rem;
+  margin: 2px 0;
   box-sizing: border-box;
 
   &:hover {

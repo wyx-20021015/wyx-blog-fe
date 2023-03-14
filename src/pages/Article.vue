@@ -8,6 +8,7 @@ import { ArticleData } from '../types/ArticleData'
 import { jumpTo } from '../router'
 import ShowMessage from '../components/showMessage.vue'
 import WBtn from "../components/wBtn.vue"
+import VirtualScroll from '../components/VirtualScroll.vue'
 
 export default defineComponent({
   props: {
@@ -76,7 +77,7 @@ export default defineComponent({
     return () => (
       <div class="article">
         <div class="article-list">
-          {data_.value !== null &&
+          {/* {data_.value !== null &&
             data_.value.map((item) => {
               return <ArticleCard data={item} />
             })}
@@ -84,16 +85,17 @@ export default defineComponent({
             <div class="article-list-none">
               <ShowMessage msg={content} />
             </div>
-          )}
+          )} */}
+          <VirtualScroll dataSource={data_.value}></VirtualScroll>
         </div>
-        <div class="article-page-controller">
+        {/* <div class="article-page-controller">
           <div class="article-page-controller-btn" >
             <WBtn onClick={(e) => prePage(e)} text="上一页" size="middle">上一页</WBtn>
           </div>
           <div class="article-page-controller-btn">
             <WBtn onClick={(e) => nextPage(e)} text="下一页" size='middle'>下一页</WBtn>
           </div>
-        </div>
+        </div> */}
       </div>
     )
   }
@@ -103,6 +105,7 @@ export default defineComponent({
 <style lang="scss">
 .article {
   height: 100%;
+  flex: 1;
   width: 70vw;
   // max-width: 1000px;
   display: flex;
@@ -120,9 +123,6 @@ export default defineComponent({
   &-list {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    min-height: 420px;
     margin-bottom: 10px;
   }
 }
